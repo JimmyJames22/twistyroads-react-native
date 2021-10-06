@@ -1,12 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+
+import Map from "./components/homepage/Map";
+import DestSearch from "./components/homepage/DestSearch";
+import MenuManager from "./components/homepage/MenuManager";
+
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Map style={styles.map} />
+      <DestSearch style={styles.search} />
+      <MenuManager menuOpacity={0}/>
     </View>
   );
 }
@@ -14,8 +20,20 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    position: "relative",
   },
+
+  map: {
+    // zIndex: -1,
+  },
+
+  search: {
+    height: 65,
+    zIndex: 3
+  },
+
+  menu: {
+    
+  }
 });
