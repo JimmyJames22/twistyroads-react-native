@@ -1,32 +1,51 @@
 import React from "react";
-import { StyleSheet, Text, TextInput, View, FlatList } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableHighlight,
+  View,
+  ScrollView,
+} from "react-native";
 
 class DestSearch extends React.Component {
-  constructor () {
-    super()
+  constructor() {
+    console.log("jemez is dum");
+    super();
     this.state = {
       recentDests: [
         "Home",
         "Work",
-        "170 Centre Street",
+        "170 Centre Street Milton, MA",
         "100 High Street",
-        "71 Columbine Road"
-      ]
-    }
+        "71 Columbine Road",
+      ],
+    };
   }
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.search}>
-          <TextInput style={styles.searchBar}/>
-          <FlatList horizontal={true} style={{height: 40}}>
-            <Recent text={this.state.recentDests[0]}/>
-            <Recent text={this.state.recentDests[1]}/>
-            <Recent text={this.state.recentDests[2]}/>
-            <Recent text={this.state.recentDests[3]}/>
-            <Recent text={this.state.recentDests[4]}/>
-          </FlatList>
+          <TextInput style={styles.searchBar} />
+          <ScrollView
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
+            horizontal={true}
+            style={styles.scrollingDestWrapper}
+          >
+            <Recent text={this.state.recentDests[0]} />
+            <Recent text={this.state.recentDests[1]} />
+            <Recent text={this.state.recentDests[2]} />
+            <Recent text={this.state.recentDests[3]} />
+            <Recent text={this.state.recentDests[4]} />
+          </ScrollView>
+        </View>
+        <View style={styles.historyWrapper}>
+          <Text style={{ padding: 15, paddingLeft: 25, fontSize: 24 }}>
+            Favorite Routes
+          </Text>
+          <PreviousRoute />
         </View>
       </View>
     );
@@ -36,8 +55,22 @@ class DestSearch extends React.Component {
 const Recent = (props) => {
   return (
     <View style={styles.recentDestWrapper}>
-      <Text>{props.text}</Text>
+      <TouchableHighlight style={styles.recentDest}>
+        <Text numberOfLines={1} selectable={true} style={{ maxWidth: 150 }}>
+          {props.text}
+        </Text>
+      </TouchableHighlight>
     </View>
+  );
+};
+
+const PreviousRoute = (props) => {
+  return (
+    <TouchableHighlight style={styles.previousRouteWrapper}>
+      <View>
+        <Text>Route</Text>
+      </View>
+    </TouchableHighlight>
   );
 };
 
@@ -54,8 +87,11 @@ const styles = StyleSheet.create({
 
   search: {
     backgroundColor: "dodgerblue",
-    borderRadius: 20,
-    paddingBottom: 10
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    paddingBottom: 15,
   },
 
   searchBar: {
@@ -69,11 +105,32 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 
+  scrollingDestWrapper: {
+    paddingTop: 5,
+  },
+
   recentDestWrapper: {
     fontSize: 20,
-    height: 20,
-    paddingLeft: 15
-  }
+    paddingLeft: 15,
+  },
+
+  recentDest: {
+    padding: 6,
+    backgroundColor: "white",
+    borderRadius: 10,
+  },
+
+  historyWrapper: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  previousRouteWrapper: {
+    width: "90%",
+    backgroundColor: "rgb(225, 225, 225)",
+    borderRadius: 10,
+  },
 });
 
 export default DestSearch;
