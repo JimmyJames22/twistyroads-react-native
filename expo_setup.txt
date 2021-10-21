@@ -1,0 +1,5 @@
+cd ReactNativeProjects
+
+cd TwistyRoads
+
+expo start
