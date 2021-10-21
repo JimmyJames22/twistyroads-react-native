@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
   },
 
   search: {
-    height: 65,
     zIndex: 3
   },
 

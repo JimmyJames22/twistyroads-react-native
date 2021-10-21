@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, ImageButton, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, ImageButton, Text, TouchableHighlight } from "react-native";
 
 class MenuBubble extends React.Component {
   constructor(){
@@ -7,11 +7,11 @@ class MenuBubble extends React.Component {
   }
   render() {
     return (
-      <View style={styles.container}>
-        <TouchableOpacity onPress={this.props.onPress}>
+      <TouchableHighlight onPress={this.props.onPress} style={{zIndex: 2, borderRadius: 15}}>
+        <View style={styles.container}>
           <Text style={styles.menuResting}>M</Text>
-        </TouchableOpacity>
-      </View>
+        </View>
+      </TouchableHighlight>
     );
   }
 }
